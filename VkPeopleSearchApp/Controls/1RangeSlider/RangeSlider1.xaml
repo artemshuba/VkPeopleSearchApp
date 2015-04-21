@@ -1,0 +1,65 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:rangeSlider="using:VkPeopleSearchApp.Controls.RangeSlider">
+
+    <Style TargetType="rangeSlider:SimpleSlider">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="rangeSlider:SimpleSlider">
+                    <StackPanel>
+                        <Grid Height="15">
+                            <Border Height="15"
+                            VerticalAlignment="Stretch"
+                            Background="DarkGray"/>
+                            <Canvas Margin="0"
+                            MinHeight="8">
+                                <Rectangle x:Name="PART_Rectangle_Middle" 
+                                   Height="15"
+                                   Fill="LightBlue" />
+                                <Thumb x:Name="PART_Thumb_Lower"
+                               Width="15"
+                               Height="15" Background="White" />
+                                <Thumb x:Name="PART_Thumb_Upper"
+                               Width="15"
+                               Height="15" Background="White" />
+                            </Canvas>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,-15,0">
+                            <ItemsControl  x:Name="PART_ItemsControl_RangeControl" 
+                                       Canvas.ZIndex="1"                                                                                  
+                                        >
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="{Binding Tag,ElementName=PART_ItemsControl_RangeControl}" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="|" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Gray" FontSize="10"/>
+                                            <TextBlock Grid.Row="1" Foreground="Gray" VerticalAlignment="Center"  Margin="{Binding RangeMargin}" HorizontalAlignment="Left" TextAlignment="Left" Text="{Binding RangeValue}" FontSize="12"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <Grid x:Name="PART_LastMark_Grid" Width="{Binding Tag,ElementName=PART_ItemsControl_RangeControl}" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="|" Grid.Row="0" VerticalAlignment="Center" Margin="-4,0,0,0" HorizontalAlignment="Left" Foreground="Gray" FontSize="10"/>
+                                <TextBlock x:Name="PART_Lastmark_TextBlock"  Grid.Row="1" Margin="-4,0,0,0" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left" FontSize="12"/>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

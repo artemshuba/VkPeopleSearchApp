@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkPeopleSearchApp", "VkPeopleSearchApp\VkPeopleSearchApp.csproj", "{991016D1-995E-470C-8556-A399E684883D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{EAF71B5A-D41C-421F-9BC0-98E808500961}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkLib", "libs\VkLib\VkLib.csproj", "{96824317-5143-413A-8EC6-5F92DE7AB60E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|ARM.Build.0 = Debug|ARM
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|ARM.Deploy.0 = Debug|ARM
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|x86.ActiveCfg = Debug|x86
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|x86.Build.0 = Debug|x86
+		{991016D1-995E-470C-8556-A399E684883D}.Debug|x86.Deploy.0 = Debug|x86
+		{991016D1-995E-470C-8556-A399E684883D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991016D1-995E-470C-8556-A399E684883D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991016D1-995E-470C-8556-A399E684883D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{991016D1-995E-470C-8556-A399E684883D}.Release|ARM.ActiveCfg = Release|ARM
+		{991016D1-995E-470C-8556-A399E684883D}.Release|ARM.Build.0 = Release|ARM
+		{991016D1-995E-470C-8556-A399E684883D}.Release|ARM.Deploy.0 = Release|ARM
+		{991016D1-995E-470C-8556-A399E684883D}.Release|x86.ActiveCfg = Release|x86
+		{991016D1-995E-470C-8556-A399E684883D}.Release|x86.Build.0 = Release|x86
+		{991016D1-995E-470C-8556-A399E684883D}.Release|x86.Deploy.0 = Release|x86
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Debug|x86.ActiveCfg = Debug|x86
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Debug|x86.Build.0 = Debug|x86
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Release|x86.ActiveCfg = Release|x86
+		{96824317-5143-413A-8EC6-5F92DE7AB60E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{96824317-5143-413A-8EC6-5F92DE7AB60E} = {EAF71B5A-D41C-421F-9BC0-98E808500961}
+	EndGlobalSection
+EndGlobal

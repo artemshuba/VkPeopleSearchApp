@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="VkPeopleSearchApp.View.SelectCityView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:loadingIndicator="using:VkPeopleSearchApp.Controls.LoadingIndicator"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:Name="pageRoot">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Page.BottomAppBar>
+        <CommandBar Foreground="#51647a" Background="White">
+            <AppBarButton Icon="Clear" Label="сброс" Command="{Binding ResetCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Background="{StaticResource VkAccentBrush}">
+            <TextBox PlaceholderText="поиск" Margin="13,33,14,14" Style="{StaticResource SearchTextBoxStyle}"
+                     Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <loadingIndicator:LoadingIndicator Grid.Row="1" Padding="13,10,13,0"
+                        IsBusy="{Binding Tasks[cities].IsWorking}"
+                        Error="{Binding Tasks[cities].Error}">
+            <ListView Padding="0,15,0,15"
+                  ItemsSource="{Binding Cities}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button DataContext="{Binding}" Style="{StaticResource SimpleButtonStyle}" Margin="15,0,15,15" FontSize="20"
+                                Command="{Binding DataContext.SelectCityCommand, ElementName=pageRoot}" CommandParameter="{Binding}">
+                            <TextBlock Text="{Binding Title}" Foreground="#2e3033"/>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </loadingIndicator:LoadingIndicator>
+    </Grid>
+</Page>

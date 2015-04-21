@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="VkPeopleSearchApp.Controls.PeopleItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="50"
+    d:DesignWidth="400"
+    x:Name="rootElement">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="52"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#f2f2f2" Width="52">
+            <Image Source="{Binding User.Photo, ElementName=rootElement}" Width="52" Height="52"/>
+        </Border>
+
+        <StackPanel Margin="9,0,10,0" Grid.Column="1">
+            <TextBlock x:Name="NameTextBlock" Text="{Binding User.Name, ElementName=rootElement}" FontFamily="Segoe WP" FontSize="21" Foreground="#2e3033"
+                       Margin="0,-2,30,0" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" SizeChanged="NameTextBlock_OnSizeChanged"/>
+
+            <TextBlock Text="{Binding SecondLine, ElementName=rootElement}" FontFamily="Segoe WP" FontSize="17.5" Foreground="#8b8f94"
+                       Margin="1,-2.5,0,0" TextTrimming="CharacterEllipsis"/>
+        </StackPanel>
+        
+        <Image Grid.Column="1" x:Name="VerifiedIcon" Source="/Resources/Images/Verified.png" Width="18" Height="18" Visibility="Collapsed"
+               HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <Image x:Name="FriendedIcon" Grid.Column="2" HorizontalAlignment="Right" Source="/Resources/Images/SearchAddedFriend.png" Width="44" Height="28"
+               Visibility="Collapsed" Margin="0,1,1,0"/>
+        
+        <Button x:Name="AddFriendButton" Grid.Column="2" Style="{StaticResource SimpleButtonStyle}" Background="#5181b8" MinWidth="0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                Margin="0,0,1,0" Padding="1,0,0,1" Visibility="Collapsed">
+            <Image Source="/Resources/Images/SearchAddFriend.png" Width="42" Height="28.5" Margin="0,1,1,0"/>
+        </Button>
+    </Grid>
+</UserControl>

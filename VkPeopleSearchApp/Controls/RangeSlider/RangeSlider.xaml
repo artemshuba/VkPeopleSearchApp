@@ -1,0 +1,72 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:rangeSlider="using:VkPeopleSearchApp.Controls.RangeSlider">
+
+    <Style x:Key="RangeSliderThumbStyle" TargetType="Thumb">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="5,10,5,10"/>
+        <Setter Property="Margin" Value="-5,-10,-5,-10" />
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="#51647a"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Background="Transparent">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="rangeSlider:RangeSlider">
+        <Setter Property="ManipulationMode" Value="None"/>
+        <Setter Property="Padding" Value="0,10,0,10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="rangeSlider:RangeSlider">
+                    <Grid Background="Transparent" Margin="{TemplateBinding Padding}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="MiddlerBar">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#ebedf0"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="PART_LeftThumb">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#d9d9d9"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="PART_RightThumb">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#d9d9d9"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Rectangle x:Name="PART_LowerBar" Fill="#ebedf0" Width="0" Margin="0,5,0,5"/>
+
+                        <Rectangle x:Name="MiddlerBar" Grid.Column="2" Fill="#6991bf" Margin="0,5,0,5"/>
+
+                        <Rectangle x:Name="PART_UpperBar" Grid.Column="4" Fill="#ebedf0" Width="0" Margin="0,5,0,5"/>
+
+                        <Thumb x:Name="PART_LeftThumb" Grid.Column="1" Style="{StaticResource RangeSliderThumbStyle}"/>
+                        <Thumb x:Name="PART_RightThumb" Grid.Column="3" Style="{StaticResource RangeSliderThumbStyle}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

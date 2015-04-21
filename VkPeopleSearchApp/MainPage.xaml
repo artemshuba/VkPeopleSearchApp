@@ -1,0 +1,113 @@
+﻿<Page
+    x:Class="VkPeopleSearchApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:VkPeopleSearchApp.Behaviors"
+    xmlns:loadingIndicator="using:VkPeopleSearchApp.Controls.LoadingIndicator"
+    xmlns:controls="using:VkPeopleSearchApp.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:Name="pageRoot">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Used to prevent autofocus on SearchTextBox (for example after clicking on clear params button) -->
+        <UserControl IsTabStop="True" Height="1" Opacity="0"/>
+        
+        <!-- Header -->
+        <Grid Background="{StaticResource VkAccentBrush}">
+            <TextBox PlaceholderText="поиск" Margin="13,33,14,14" Style="{StaticResource SearchTextBoxStyle}"
+                     Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:SearchBehavior Command="{Binding SearchCommand}"/>
+                </interactivity:Interaction.Behaviors>
+            </TextBox>
+        </Grid>
+        
+        <!-- Params button -->
+        <Button Grid.Row="1" Style="{StaticResource SimpleButtonStyle}"
+                Margin="13,21.5,13,0"
+                Command="{Binding GoToParamsCommand}"
+                Visibility="{Binding SearchParamsString, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=True}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Resources/Images/SearchParams.png" Margin="14,0,0,0"
+                       Width="24" Stretch="Uniform" VerticalAlignment="Center"/>
+                <TextBlock Text="указать параметры" Foreground="#5181b8"
+                           FontSize="19" FontFamily="Segoe WP"
+                           FontWeight="SemiBold" Margin="24,1,0,0" VerticalAlignment="Center"
+                           TextLineBounds="TrimToCapHeight"/>
+            </StackPanel>
+        </Button>
+
+        <!-- Params with filters button -->
+        <Button Grid.Row="1" Style="{StaticResource SimpleButtonStyle}"
+                Margin="19,6,19,0"
+                Command="{Binding GoToParamsCommand}"
+                Visibility="{Binding SearchParamsString, Converter={StaticResource NullToVisibilityConverter}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="параметры" FontSize="21" FontFamily="Segoe WP" Foreground="#2e3033"/>
+                    <TextBlock Text="{Binding SearchParamsString}" TextTrimming="CharacterEllipsis"
+                                FontFamily="Segoe WP" FontSize="17" Foreground="#8b8f94" Margin="2,-2.5,0,0"/>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource SimpleButtonStyle}" Command="{Binding ClearParamsCommand}"
+                        Foreground="#a7b1bc" MinWidth="0" Padding="4,3,4,3" Margin="0,2,0,-2">
+                    <SymbolIcon Symbol="Cancel"/>
+                </Button>
+            </Grid>
+        </Button>
+
+        <!-- Content -->
+        <loadingIndicator:LoadingIndicator Grid.Row="2" Margin="0,10,0,0" Padding="13,0,13,0"
+                        IsBusy="{Binding Tasks[search].IsWorking}"
+                        Error="{Binding Tasks[search].Error}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border Background="#f2f2f2" Margin="0,12,0,0" Padding="18,8,0,8" Visibility="{Binding TotalCount, Converter={StaticResource NullToVisibilityConverter}}">
+                    <TextBlock Foreground="#8b8f94" FontFamily="Segoe WP" FontWeight="SemiBold" FontSize="16.5">
+                        <Run Text="Найдено" />
+                        <Run Text="{Binding TotalCount, Converter={StaticResource SearchResultsStringConverter}}"/>
+                    </TextBlock>
+                </Border>
+                <ListView Grid.Row="1" ItemsSource="{Binding Users}" ShowsScrollingPlaceholders="False" Margin="0,0,0,0"
+                          Padding="13,15,13,0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Margin" Value="0,0,0,13" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- We must specify width or items will jump on scrolling -->
+                            <Border Width="{Binding ActualWidth, ElementName=LayoutRoot}">
+                                <controls:PeopleItemControl User="{Binding}" Margin="0,0,26,0"/>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <loadingIndicator:LoadingIndicator Margin="0,0,0,40"
+                                IsBusy="{Binding Tasks[searchMore].IsWorking}"
+                                Error="{Binding Tasks[searchMore].Error}"/>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                </ListView>
+            </Grid>
+        </loadingIndicator:LoadingIndicator>
+    </Grid>
+</Page>
